@@ -1,4 +1,8 @@
 <!doctype html>
+<!-- Token Radar: a static page that renders the ranked board from data.js.
+     No network: the page reads window.RADAR from the script beside it and never
+     fetches anything. The board itself renders into #board; the detail drawer,
+     the filters and the model panel are all built by dashboard/app.js. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,8 +11,16 @@
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<a class="skip" href="#board">Skip to the board</a>
-<main id="board" tabindex="-1" aria-busy="true"></main>
+<!-- The skip link: keyboard readers jump straight to the board. -->
+<a
+  class="skip"
+  href="#board">Skip to the board</a>
+<!-- The board mounts here. aria-busy clears once app.js has rendered the first view. -->
+<main
+  id="board"
+  tabindex="-1"
+  aria-busy="true"></main>
+<!-- The dataset first, then the code that renders it: app.js reads window.RADAR. -->
 <script src="../data.js"></script>
 <script src="app.js"></script>
 </body>
